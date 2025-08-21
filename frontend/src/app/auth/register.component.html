@@ -1,0 +1,23 @@
+<mat-card>
+  <h2>Register</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" required />
+      <mat-hint>Min 6 characters</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="role">
+        <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <button mat-raised-button color="primary" type="submit" [disabled]="loading">Register</button>
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  </form>
+</mat-card>

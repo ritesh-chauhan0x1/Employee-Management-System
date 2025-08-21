@@ -1,0 +1,49 @@
+<div class="employee-list-container">
+  <div class="toolbar">
+    <input type="text" placeholder="Search by name..." [(ngModel)]="search" (ngModelChange)="onSearchChange()" />
+    <button (click)="openModal()">Add Employee</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th (click)="onSortChange('name')">Name</th>
+        <th (click)="onSortChange('position')">Position</th>
+        <th (click)="onSortChange('department')">Department</th>
+        <th (click)="onSortChange('salary')">Salary</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.position }}</td>
+        <td>{{ emp.department }}</td>
+        <td>{{ emp.salary | currency }}</td>
+        <td>
+          <button (click)="openModal(emp)">Edit</button>
+          <button (click)="deleteEmployee(emp._id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination">
+    <button (click)="onPageChange(page - 1)" [disabled]="page === 1">Prev</button>
+    <span>Page {{ page }} of {{ total | number: '1.0-0' }}</span>
+    <button (click)="onPageChange(page + 1)" [disabled]="page * limit >= total">Next</button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" *ngIf="showModal">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <h2>{{ isEdit ? 'Edit' : 'Add' }} Employee</h2>
+      <label>Name: <input formControlName="name" required /></label>
+      <label>Position: <input formControlName="position" required /></label>
+      <label>Department: <input formControlName="department" required /></label>
+      <label>Salary: <input formControlName="salary" type="number" required /></label>
+      <div class="modal-actions">
+        <button type="submit">{{ isEdit ? 'Update' : 'Add' }}</button>
+        <button type="button" (click)="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

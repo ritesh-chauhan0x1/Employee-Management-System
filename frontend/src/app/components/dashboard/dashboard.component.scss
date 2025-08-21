@@ -1,0 +1,17 @@
+mat-card {
+  margin: 2rem auto;
+  max-width: 600px;
+  padding: 2rem;
+}
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+.charts {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

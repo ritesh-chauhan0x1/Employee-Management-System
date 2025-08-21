@@ -1,0 +1,14 @@
+<mat-card>
+  <h2>Dashboard</h2>
+  <div class="stats">
+    <div>Total Employees: {{ employeeStats.total }}</div>
+    <div>Active Employees: {{ employeeStats.active }}</div>
+  </div>
+  <div class="charts">
+    <canvas baseChart
+      [data]="chartData"
+      [options]="chartOptions"
+      chartType="bar">
+    </canvas>
+  </div>
+</mat-card>
